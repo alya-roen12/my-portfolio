@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alya Amani - Computer Science Student</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(45deg, #1b934f, #6fa929);
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Navigation - Fixed positioning issues */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        padding: 1rem 0;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        position: relative;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #638725;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-link {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        transition: color 0.3s ease;
+        padding: 0.5rem 0;
+      }
+
+      .nav-link:hover {
+        color: #638725;
+      }
+
+      /* Mobile Menu Toggle */
+      .mobile-menu-toggle {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        padding: 5px;
+        background: none;
+        border: none;
+        z-index: 1001;
+      }
+
+      .mobile-menu-toggle span {
+        width: 25px;
+        height: 3px;
+        background: #333;
+        margin: 3px 0;
+        transition: 0.3s;
+        border-radius: 3px;
+      }
+
+      .mobile-menu-toggle.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+      }
+
+      .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .mobile-menu-toggle.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+      }
+
+      /* Hero Section */
+      .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        padding-top: 80px;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 30px;
+        background: linear-gradient(45deg, #1b934f, #6fa929);
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Main Content */
+      .main-content {
+        background: white;
+      }
+
+      .section {
+        padding: 80px 0;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: #378835;
+        position: relative;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 3px;
+        background: linear-gradient(45deg, #1b934f, #6fa929);
+      }
+
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 3rem;
+        align-items: start;
+      }
+
+      .profile-placeholder {
+        width: 230px;
+        height: 300px;
+        background: linear-gradient(45deg, #307441, hsl(112, 66%, 33%));
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 3rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .profile-placeholder img {
+        width: 200px;
+        height: 270px;
+        border-radius: 20px;
+      }
+
+      .about-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+      }
+
+      .about-text p {
+        margin-bottom: 1.5rem;
+      }
+
+      .skills-courses img {
+        width: 106px;
+        height: 109px;
+      }
+
+      .skills-courses {
+        display: block;
+        margin-top: 3rem;
+      }
+
+      .skills {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        justify-items: center;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .skill-item {
+        background: linear-gradient(135deg, #979796, #efffdc);
+        padding: 1.5rem;
+        border-radius: 15px;
+        text-align: center;
+        transition: transform 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        height: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .skill-item:hover {
+        transform: translateY(-5px);
+      }
+
+      .skill-icon {
+        font-size: 2.5rem;
+        margin: 0 auto 1rem;
+        display: block;
+      }
+
+      .table-wrapper {
+        overflow-x: auto;
+        margin-top: 2rem;
+      }
+
+      .competency-table {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        background: white;
+      }
+
+      .competency-table th,
+      .competency-table td {
+        padding: 1rem;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .competency-table th {
+        background: linear-gradient(45deg, #1b934f, #6fa929);
+        color: white;
+        font-size: 1rem;
+      }
+
+      .competency-table td {
+        color: #333;
+        font-size: 0.95rem;
+      }
+
+      .competency-table tr:hover {
+        background: #f3f4f6;
+      }
+
+      .contact {
+        background: linear-gradient(45deg, #1b934f, #6fa929);
+        color: white;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .contact-item {
+        background: rgba(164, 209, 43, 0.1);
+        padding: 2rem;
+        border-radius: 20px;
+        text-align: center;
+        backdrop-filter: blur(10px);
+        transition: transform 0.3s ease;
+      }
+
+      .contact-item:hover {
+        transform: translateY(-5px);
+      }
+
+      .contact-icon-img {
+        width: 60px;
+        height: 60px;
+        margin-top: 10px;
+      }
+
+      .footer {
+        background: #333;
+        color: white;
+        text-align: center;
+        padding: 2rem 0;
+      }
+
+      /* Projects Section Styles */
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 3rem;
+        margin-top: 3rem;
+      }
+
+      .project-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      .project-video {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        display: block;
+        border-radius: 20px 20px 0 0;
+      }
+
+      .project-content {
+        padding: 2rem;
+      }
+
+      .project-title {
+        font-size: 1.5rem;
+        color: #378835;
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      .project-description {
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+      }
+
+      .project-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .tech-tag {
+        background: linear-gradient(45deg, #1b934f, #6fa929);
+        color: white;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+      }
+
+      .project-links {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .github-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.8rem 1.5rem;
+        background: #333;
+        color: white;
+        text-decoration: none;
+        border-radius: 25px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
+      }
+
+      .github-link:hover {
+        background: #555;
+        transform: translateY(-2px);
+      }
+
+      .github-icon {
+        width: 20px;
+        height: 20px;
+      }
+
+      /* Video placeholder styles */
+      .video-placeholder {
+        width: 100%;
+        height: 250px;
+        background: linear-gradient(135deg, #378835, #6fa929);
+        border-radius: 20px 20px 0 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .video-placeholder::before {
+        content: "🎬";
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .video-placeholder-content {
+        text-align: center;
+      }
+
+      /* Tablet Responsive */
+      @media (max-width: 1024px) {
+        .nav-container {
+          padding: 0 15px;
+        }
+
+        .container {
+          padding: 0 15px;
+        }
+
+        .hero {
+          padding-top: 100px;
+        }
+
+        .about-content {
+          gap: 2rem;
+        }
+
+        .skills {
+          max-width: 100%;
+          gap: 1rem;
+        }
+
+        .skill-item {
+          width: 280px;
+          height: 280px;
+        }
+
+        .projects-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 768px) {
+        .mobile-menu-toggle {
+          display: flex;
+        }
+
+        .nav-menu {
+          position: fixed;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          background: rgba(255, 255, 255, 0.98);
+          backdrop-filter: blur(10px);
+          flex-direction: column;
+          padding: 2rem 0;
+          box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+          transform: translateY(-100%);
+          opacity: 0;
+          visibility: hidden;
+          transition: all 0.3s ease;
+          gap: 0;
+        }
+
+        .nav-menu.active {
+          transform: translateY(0);
+          opacity: 1;
+          visibility: visible;
+        }
+
+        .nav-menu li {
+          text-align: center;
+          margin: 0.5rem 0;
+        }
+
+        .nav-link {
+          display: block;
+          padding: 1rem;
+          font-size: 1.1rem;
+        }
+
+        .hero {
+          padding-top: 120px;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .about-content {
+          grid-template-columns: 1fr;
+          text-align: center;
+          gap: 2rem;
+        }
+
+        .profile-placeholder {
+          justify-self: center;
+        }
+
+        .skills {
+          grid-template-columns: 1fr;
+          max-width: 100%;
+        }
+
+        .skill-item {
+          width: 100%;
+          max-width: 300px;
+          height: auto;
+          min-height: 250px;
+        }
+
+        .section {
+          padding: 60px 0;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .projects-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .project-card {
+          margin: 0 auto;
+          max-width: 400px;
+        }
+      }
+
+      /* Small Mobile */
+      @media (max-width: 480px) {
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .hero p {
+          font-size: 0.9rem;
+        }
+
+        .container {
+          padding: 0 10px;
+        }
+
+        .nav-container {
+          padding: 0 10px;
+        }
+
+        .logo {
+          font-size: 1.2rem;
+        }
+
+        .skill-item {
+          padding: 1rem;
+        }
+
+        .competency-table th,
+        .competency-table td {
+          padding: 0.5rem;
+          font-size: 0.85rem;
+        }
+
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .project-content {
+          padding: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="logo">Alya Amani</div>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#competencies" class="nav-link">Competencies</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <h1>Alya Amani</h1>
+        <p>Computer Science Student | Front-End Development | Cybersecurity</p>
+        <a href="#about" class="btn">About Me</a>
+      </div>
+    </section>
+
+    <!-- About -->
+    <div class="main-content">
+      <section id="about" class="section">
+        <div class="container">
+          <h2 class="section-title">About Me</h2>
+          <div class="about-content">
+            <div class="profile-placeholder">
+              <img src="asset/my passport pics.jpg" alt="Profile Picture" />
+            </div>
+
+            <div class="about-text">
+              <p>
+                Hello! I'm Alya Amani, a passionate Computer Science student at
+                UiTM Jasin Melaka. I am currently pursuing my studies in Diploma
+                in Computer Science with a focus on front-end development and
+                cybersecurity as my main interest.
+              </p>
+              <p>
+                My academic journey has been enriching, with coursework covering
+                algorithms, data structures, web development, database
+                management, and computer security. I maintain a solid academic
+                performance with a current CGPA of 2.97.
+              </p>
+              <p>
+                I am eager to learn new things, adaptable to new environments,
+                and always willing to work collaboratively in a team. I am
+                currently seeking an internship opportunity where I can apply
+                and further develop my skills in a practical, team-oriented
+                setting.
+              </p>
+            </div>
+          </div>
+
+          <div class="skills-courses">
+            <section id="skills" class="section">
+              <div>
+                <h3
+                  style="
+                    text-align: center;
+                    margin-bottom: 2rem;
+                    color: #536f23;
+                    font-size: 1.8rem;
+                  "
+                >
+                  Technical Skills
+                </h3>
+                <div class="skills">
+                  <div class="skill-item">
+                    <img
+                      src="asset/laptop.png"
+                      alt="Programming"
+                      class="skill-icon"
+                    />
+                    <h4>Programming</h4>
+                    <p>C++, Java, JavaScript, SQL, PHP</p>
+                  </div>
+                  <div class="skill-item">
+                    <img
+                      src="asset/website.png"
+                      alt="Web Development"
+                      class="skill-icon"
+                    />
+                    <h4>Web Development</h4>
+                    <p>HTML, CSS, JavaScript</p>
+                  </div>
+                  <div class="skill-item">
+                    <img
+                      src="asset/shield.png"
+                      alt="Cybersecurity"
+                      class="skill-icon"
+                    />
+                    <h4>Cybersecurity</h4>
+                    <p>Computer Security Fundamentals</p>
+                  </div>
+                  <div class="skill-item">
+                    <img
+                      src="asset/paint.png"
+                      alt="Design Tools"
+                      class="skill-icon"
+                    />
+                    <h4>Design Tools</h4>
+                    <p>Photoshop, Lightroom, Illustrator</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <!-- Projects Section - REPLACE YOUR ENTIRE PROJECTS SECTIONS WITH THIS -->
+      <section id="projects" class="section">
+        <div class="container">
+          <h2 class="section-title">My Projects</h2>
+          <div class="projects-grid">
+            <!-- Project 1: Corm Cafe -->
+            <div class="project-card">
+              <div class="project-video-container">
+                <video class="project-video" autoplay muted loop playsinline>
+                  <source src="asset/cormpage.mp4" type="video/mp4" />
+                  <div class="video-placeholder">
+                    <div class="video-placeholder-content">
+                      <div>🎬</div>
+                      <div>Project Demo Video</div>
+                      <small>Video not supported</small>
+                    </div>
+                  </div>
+                </video>
+              </div>
+
+              <div class="project-content">
+                <h3 class="project-title">Corm Cafe Reservation System</h3>
+                <p class="project-description">
+                  Developed a café reservation system for online booking, menu
+                  ordering, and staff/admin management using HTML, CSS,
+                  JavaScript, PHP, XAMPP and MySQL.
+                </p>
+
+                <p class="project-description">
+                  <strong>Responsibilities:</strong>
+                </p>
+
+                <p class="project-description">
+                  - Built front-end and back-end for View Payment, Reservation,
+                  and Login pages.
+                </p>
+                <p class="project-description">
+                  - Debugged and fixed website issues, including a PHP error in
+                  the Menu page image upload.
+                </p>
+                <p class="project-description">
+                  - Created Entity Relationship Diagram (ERD) for efficient
+                  database design.
+                </p>
+                <p class="project-description">
+                  - Ensured smooth system performance and improved user
+                  experience.
+                </p>
+
+                <div class="project-tech">
+                  <span class="tech-tag">HTML</span>
+                  <span class="tech-tag">CSS</span>
+                  <span class="tech-tag">JavaScript</span>
+                  <span class="tech-tag">PHP</span>
+                  <span class="tech-tag">MySQL</span>
+                  <span class="tech-tag">Xampp</span>
+                </div>
+
+                <div class="project-links">
+                  <a
+                    href="https://github.com/alya-roen12/cormcafe"
+                    class="github-link"
+                    target="_blank"
+                  >
+                    <svg
+                      class="github-icon"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                      />
+                    </svg>
+                    View on GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Project 2: Login Page -->
+            <div class="project-card">
+              <div class="project-video-container">
+                <video class="project-video" autoplay muted loop playsinline>
+                  <source src="asset/login .mp4" type="video/mp4" />
+                  <div class="video-placeholder">
+                    <div class="video-placeholder-content">
+                      <div>🎬</div>
+                      <div>Project Demo Video</div>
+                      <small>Video not supported</small>
+                    </div>
+                  </div>
+                </video>
+              </div>
+
+              <div class="project-content">
+                <h3 class="project-title">Login Page</h3>
+                <p class="project-description">
+                  Developed an interactive login page using HTML, CSS, and
+                  JavaScript, allowing users to log in or create a new account.
+                  The system displays an error message if the username or
+                  password is incorrect, enhancing user feedback and experience.
+                </p>
+
+                <p class="project-description">
+                  <strong>Responsibilities:</strong>
+                </p>
+
+                <p class="project-description">
+                  - Designed a responsive UI with HTML & CSS.
+                </p>
+                <p class="project-description">
+                  - Implemented role-based form switching (Staff / Customer)
+                  using JavaScript.
+                </p>
+                <p class="project-description">
+                  - Added error display for invalid username or password.
+                </p>
+
+                <div class="project-tech">
+                  <span class="tech-tag">HTML</span>
+                  <span class="tech-tag">CSS</span>
+                  <span class="tech-tag">JavaScript</span>
+                  <span class="tech-tag">PHP</span>
+                  <span class="tech-tag">MySQL</span>
+                  <span class="tech-tag">Xampp</span>
+                </div>
+
+                <div class="project-links">
+                  <a
+                    href="https://github.com/alya-roen12/LoginPage"
+                    class="github-link"
+                    target="_blank"
+                  >
+                    <svg
+                      class="github-icon"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+                      />
+                    </svg>
+                    View on GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Competencies Section -->
+      <section id="competencies" class="section">
+        <div class="container">
+          <h2 class="section-title">Explore My Competencies</h2>
+          <div class="table-wrapper">
+            <table class="competency-table">
+              <thead>
+                <tr>
+                  <th>Course</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Introduction to Algorithm Design and Development</td>
+                  <td>
+                    Efficient problem solving through algorithm design and
+                    analysis.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Interactive Multimedia</td>
+                  <td>
+                    Design principles and multimedia development techniques.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Fundamentals of Operating Systems</td>
+                  <td>Process, memory, and file system management.</td>
+                </tr>
+                <tr>
+                  <td>Fundamentals of Data Structures</td>
+                  <td>
+                    Arrays, linked lists, stacks, queues, trees, and
+                    optimization techniques.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Introduction to Web and Mobile Application</td>
+                  <td>
+                    Basics of front-end and back-end web/mobile app development.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Introduction to Data Communication and Networking</td>
+                  <td>
+                    Understanding OSI/TCP-IP models and network applications.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Fundamentals of Entrepreneurship</td>
+                  <td>Business planning, marketing, and financial literacy.</td>
+                </tr>
+                <tr>
+                  <td>Object-Oriented Programming</td>
+                  <td>
+                    Principles of OOP such as classes, inheritance, and
+                    encapsulation.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Introduction to Database Management</td>
+                  <td>
+                    Relational databases, SQL queries, and database design.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Visual Programming</td>
+                  <td>
+                    Interactive applications using visual programming
+                    interfaces.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Information System Development</td>
+                  <td>
+                    System analysis, design, and implementation using modern
+                    methodologies.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Programming Paradigms</td>
+                  <td>
+                    Procedural, object-oriented, functional, and declarative
+                    programming styles.
+                  </td>
+                </tr>
+                <tr>
+                  <td>Digital Electronics</td>
+                  <td>
+                    Covers the basic logic of how electronic circuits work in
+                    computers using logic gates and binary systems.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact" class="section contact">
+        <div class="container">
+          <h2 class="section-title" style="color: white">
+            Contact Information
+          </h2>
+          <div class="contact-grid">
+            <div class="contact-item">
+              <h3>Email</h3>
+              <p>alyasaya10@gmail.com</p>
+              <img src="asset/email.png" alt="Email" class="contact-icon-img" />
+            </div>
+            <div class="contact-item">
+              <h3>LinkedIn</h3>
+              <p>Alya Amani</p>
+              <a
+                href="https://www.linkedin.com/in/alya-amani-423787335"
+                target="_blank"
+              >
+                <img
+                  src="asset/linkedln.png"
+                  alt="LinkedIn"
+                  class="contact-icon-img"
+                />
+              </a>
+            </div>
+            <div class="contact-item">
+              <h3>GitHub</h3>
+              <p>alya-roen12</p>
+              <a href="https://github.com/alya-roen12" target="_blank">
+                <img
+                  src="asset/github.png"
+                  alt="GitHub"
+                  class="contact-icon-img"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2025 Alya Amani. Pursuing excellence in Computer Science</p>
+      </div>
+    </footer>
+
+    <script>
+      // Select elements
+      const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+      const navMenu = document.getElementById("navMenu");
+
+      // Mobile menu toggle
+      mobileMenuToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+        mobileMenuToggle.classList.toggle("active");
+      });
+
+      // Smooth scrolling for all anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+            });
+          }
+
+          // Close menu on mobile after clicking
+          navMenu.classList.remove("active");
+          mobileMenuToggle.classList.remove("active");
+        });
+      });
+    </script>
+  </body>
+</html>
